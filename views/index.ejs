@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/output.css" />
+    <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
+    <title>Book Notes</title>
+  </head>
+  <body class="max-w-[52em] bg-slate-950 min-h-screen">
+    <a href="/" class="valkyrie mb-8 mt-2 text-cyan-500 no-underline text-6xl capitalize block leading-[1em] hover:border-b w-fit border-cyan-500 underline-offset-1" title="Ridwan Yunus"
+      >Ridwan Yunus</a
+    >
+    <a href="/admin">admin</a>
+    <h2 class="heading-2 text-start text-5xl text-cyan-500 mb-8 valkyrie no-underline">Books I’ve read</h2>
+    <p class="text-xl *:text-xl">
+      Tiny summary but <span class="font-semibold">detailed notes for each</span>. Use the ISBN number to find it from your local library or anywhere else.
+      <span class="font-semibold">This page will constantly update as I read more</span>, so bookmark it if you want to check back in a few months.
+    </p>
+    <p class="*:text-xl text-xl mt-6">
+      Sorted with <span class="font-semibold">my top recommendations up top</span>. Sort by <a href="/?sort=title" class="text-orange">title</a>, <a href="/?sort=date" class="text-orange">newest</a>,
+      or <a href="/?sort=rating" class="text-orange">best</a>.
+    </p>
+    <div class="bg-slate-50 opacity-50 w-full h-[1px] my-7 mb-10"></div>
+
+    <div class="min-h-screen flex flex-col space-y-20">
+      <% if(locals.book){%> <% for (let i = 0; i < book.length; i++) { %>
+
+      <div class="mb-12">
+        <section class="mb-12">
+          <figure class="float-left mr-8">
+            <a href="/book/<%= book[i].title %>">
+              <img src="<%=book[i].book_cover %>" alt="<%= book[i].title %>" class="w-[135px] h-[187px]" />
+            </a>
+          </figure>
+
+          <h3 id="title" class="text-3xl mb-4 underline text-cyan-600 valkyrie">
+            <a href="/book/<%= book[i].title %>" id="author" class="text-cyan-600 valkyrie"><%= book[i].title %> - by <%= book[i].author %></a>
+          </h3>
+          <p class="text-base valkyrie text-slate-500 *:text-slate-500 my-6">Date read: <%= book[i].date_read %>. How strongly I recommend it: <strong><%= book[i].rating %></strong>/10</p>
+          <p class="text-xl notes"><%= book[i].review %></p>
+          <p class="text-xl mt-6">
+            <a href="/book/<%= book[i].title %>" class="text-orange *:text-orange hover:underline"><strong>Read my notes</strong></a
+            >, or go to the <a href="/" class="text-orange hover:underline">Open library page</a> for details and reviews.
+          </p>
+        </section>
+      </div>
+      <% } %> <%}%>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/output.css" />
+    <title>Admin</title>
+  </head>
+  <body class="min-h-svh bg-[url('../images/bg.jpg')] bg-cover w-full flex flex-col items-center max-w-[55em]">
+    <header class="*:text-xl text-xl flex valkyrie">
+      <a href="/" class="hover:underline mr-16">Home</a>
+      <a href="/" class="hover:underline mr-16">Future Reads</a>
+      <a href="/search-book" class="hover:underline">Add New Book</a>
+    </header>
+
+    <main class="mt-16">
+      <h2 class="text-4xl underline valkyrie">My Notes</h2>
+
+      <div>
+        <% if(locals.book){%> <% for (let i = 0; i < book.length; i++) { %>
+        <div class="mt-10 mb-10 flex gap-x-12" data-rating="<%= book[i].rating %>" data-title="<%= book[i].title %>" data-date="<%= book[i].date_read %>">
+          <div>
+            <figure class="float-left mr-8">
+              <a href="/book/<%= book[i].title %>">
+                <img src="<%=book[i].book_cover %>" alt="<%= book[i].title %>" class="w-[135px] h-[187px]" />
+              </a>
+            </figure>
+            <h3 id="title" class="text-3xl mb-4 underline text-cyan-600 valkyrie">
+              <a href="/book/<%= book[i].title %>" id="author" class="text-cyan-600 valkyrie"><%= book[i].title %> - by <%= book[i].author %></a>
+            </h3>
+            <p class="text-lg valkyrie text-slate-200 *:text-slate-200 my-6">Date read: <%= book[i].date_read %>. How strongly I recommend it: <strong><%= book[i].rating %></strong>/10</p>
+            <p class="text-xl notes"><%= book[i].review %></p>
+            <p class="text-xl mt-6">
+              <a href="/" class="text-orange *:text-orange hover:underline"><strong>Read my notes</strong></a
+              >, or go to the <a href="/" class="text-orange hover:underline">Open library page</a> for details and reviews.
+            </p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <a href="/edit-book/<%= book[i].title %>" class="bg-slate-950 text-center mb-3 valkyrie p-2 w-44 rounded-sm">Edit Book details</a>
+            <a href="/delete/<%= book[i].title %>" class="mb-3 valkyrie bg-red-600 text-center p-2 w-44 rounded-sm">Delete Book</a>
+            <a href="/add-note/<%= book[i].title %>" class="bg-sky-950 text-center mb-3 valkyrie p-2 w-44 rounded-sm">Edit Note</a>
+            <a href="/add-new-note/<%= book[i].title %>" class="bg-green-900 text-center mb-3 valkyrie p-2 w-44 rounded-sm">New Note</a>
+          </div>
+        </div>
+
+        <% } %> <%}%>
+      </div>
+    </main>
+  </body>
+</html>

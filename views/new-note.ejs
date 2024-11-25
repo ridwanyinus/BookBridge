@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Note</title>
+    <link rel="stylesheet" href="../styles/output.css" />
+  </head>
+  <body class="bg-slate-950">
+    <h2 class="text-4xl underline valkyrie text-center mb-6">Add New Notes</h2>
+    <div class="flex flex-col items-center">
+      <label for="book-note" class="mt-4">New Note:</label>
+
+      <form action="/add-new-note" method="post" class="flex flex-col gap-y-4">
+        <textarea id="book-note" name="note" rows="12" cols="50" class="text-black p-0" required></textarea>
+        <button type="submit" class="bg-green-800 p-2 rounded-sm w-fit mx-auto">Submit</button>
+        <input type="text" value="<%= book[0].title %>" hidden name="title" />
+      </form>
+    </div>
+  </body>
+</html>
