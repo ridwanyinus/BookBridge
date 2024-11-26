@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
-const API_URL = process.env.NODE_ENV === 'production' ? 'https://bookbridge-9res.onrender.com' : 'http://localhost:4000';
+const API_URL = 'https://bookbridge-9res.onrender.com';
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
@@ -15,7 +15,7 @@ app.use(express.json());
 app.get('/', async (req, res) => {
   const sortField = req.query.sort;
   try {
-    const result = await axios.get(`/api/get-book`, {
+    const result = await axios.get(`${API_URL}/api/get-book`, {
       params: { sort: sortField },
     });
     res.render('index.ejs', { book: result.data });

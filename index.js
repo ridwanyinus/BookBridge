@@ -19,10 +19,6 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 
 let searchBook = [];
 
-app.get('/', (req, res) => {
-  res.render('index.ejs');
-});
-
 app.get('/api/admin', (req, res) => {
   const id = req.query.bookId;
   res.json(searchBook[id]);
