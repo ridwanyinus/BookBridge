@@ -1,5 +1,4 @@
 import express from 'express';
-import pg from 'pg';
 import axios from 'axios';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -11,20 +10,8 @@ const supabaseUrl = 'https://exngtygoeiilahayrrjd.supabase.co';
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const db = new pg.Client({
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: 'yaro2825432',
-  database: 'book-notes',
-});
-
-db.connect()
-  .then(() => console.log('Connected to PostgreSQL'))
-  .catch((err) => console.error('Connection error:', err));
-
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 'https://bookbridge-9res.onrender.com/' || 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
