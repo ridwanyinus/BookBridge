@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const API_URL = 'https://bookbridge-9res.onrender.com/';
 
 app.set('view engine', 'ejs');
