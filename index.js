@@ -1,9 +1,11 @@
 import express from 'express';
 import axios from 'axios';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 const port = 3000;
-const API_URL = process.env.PORT || 'http://localhost:4000';
+const API_URL = 'https://bookbridge-9res.onrender.com/' || 'http://localhost:4000';
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
