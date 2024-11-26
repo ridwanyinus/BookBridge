@@ -23,6 +23,10 @@ app.use(
 
 let searchBook = [];
 
+app.get('/', (req, res) => {
+  res.render('index'); // Render the EJS template
+});
+
 app.get('/api/admin', (req, res) => {
   const id = req.query.bookId;
   res.json(searchBook[id]);
