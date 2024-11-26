@@ -11,13 +11,13 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://bookbridge-9res.onrender.com'],
+    origin: ['http://localhost:4000', 'https://bookbridge-9res.onrender.com'],
   }),
 );
 

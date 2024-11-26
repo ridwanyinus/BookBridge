@@ -4,6 +4,7 @@
 .pnp.js
 .yarn/install-state.gz
 
+package-lock.json
 
 # misc
 .DS_Store
