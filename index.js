@@ -15,7 +15,11 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'https://bookbridge-9res.onrender.com'],
+  }),
+);
 
 let searchBook = [];
 
