@@ -51,7 +51,6 @@ app.get('/api/get-book', async (req, res) => {
 app.post('/api/add-book', async (req, res) => {
   const { title, author, rating, date, review, note, cover, isbn } = req.body;
 
-  // Validate required fields
   if (!title || !author || !rating || !date || !review || !note || !cover || !isbn) {
     return res.status(400).json({
       message: 'All fields are required to add a book.',
