@@ -12,20 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.json());
 
-app.get('/', async (req, res) => {
-  const sortField = req.query.sort;
-  try {
-    const result = await axios.get(`${API_URL}/api/get-book`, {
-      params: { sort: sortField },
-    });
-    res.render('index.ejs', { book: result.data });
-  } catch (error) {
-    console.error('Error fetching books:', error.message);
-    res.status(500).send({
-      message: 'An error occurred while fetching books. Please try again later.',
-      error: error.response?.data || 'Internal Server Error',
-    });
-  }
+app.get('/', (req, res) => {
+  res.render('index'); // Render the EJS template
 });
 
 app.get('/admin', async (req, res) => {
