@@ -11,7 +11,7 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
