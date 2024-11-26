@@ -15,7 +15,7 @@ app.use(express.json());
 app.get('/', async (req, res) => {
   const sortField = req.query.sort;
   try {
-    const result = await axios.get(`${API_URL}/api/get-book`, {
+    const result = await axios.get(`/api/get-book`, {
       params: { sort: sortField },
     });
     res.render('index.ejs', { book: result.data });
