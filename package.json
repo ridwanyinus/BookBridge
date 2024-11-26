@@ -1,13 +1,13 @@
 {
-  "name": "book-notes",
+  "name": "book-bridge",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "Ridwan Yunus",
   "keywords": [],
   "type": "module",
-  "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
