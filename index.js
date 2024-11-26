@@ -133,10 +133,11 @@ app.get('/edit-book/:id', async (req, res) => {
 });
 
 app.post('/edit-book', async (req, res) => {
-  const { title, author, rating, date, review, cover } = req.body;
+  const { id, title, author, rating, date, review, cover } = req.body;
 
   try {
     await axios.post(`${API_URL}/api/edit-book`, {
+      id,
       title,
       author,
       rating,
@@ -176,23 +177,26 @@ app.post('/delete/:id', async (req, res) => {
   const bookId = req.params.id;
 
   try {
+    // Sending the bookId to the delete API endpoint
     const result = await axios.get(`${API_URL}/api/delete-book`, {
-      params: { bookId },
+      params: { bookId }, // Pass the bookId as a query parameter
     });
 
-    console.log('Book deleted successfully:', result.data);
-    res.redirect('/admin');
+    res.redirect('/admin'); // Redirect to the admin page
   } catch (error) {
-    console.error('Error deleting the book:', error.message);
+    // Log the full error to help with debugging
+    console.error('Error deleting the book:', error);
 
+    // Extracting the error message from the response, if available
     const errorMessage = error.response?.data?.message || 'Failed to delete the book. Please try again later.';
+
+    // Send the 500 error status with the message
     res.status(500).send({
       message: 'An error occurred while deleting the book.',
       error: errorMessage,
     });
   }
 });
-
 
 app.get('/add-note/:id', async (req, res) => {
   const bookId = req.params.id;

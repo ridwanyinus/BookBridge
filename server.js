@@ -3,8 +3,13 @@ import pg from 'pg';
 import axios from 'axios';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
 
 dotenv.config();
+
+const supabaseUrl = 'https://exngtygoeiilahayrrjd.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const db = new pg.Client({
   user: 'postgres',
@@ -66,23 +71,31 @@ app.post('/api/add-book', async (req, res) => {
     });
   }
 
-  const addBook = `
-    INSERT INTO note
-    (title, author, rating, date_read, review, note, book_cover, isbn)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-  `;
-
   try {
-    // Execute the database query
-    await db.query(addBook, [title, author, rating, date, review, note, cover, isbn]);
+    // Insert data into Supabase
+    const { data, error } = await supabase.from('note').insert([
+      {
+        title,
+        author,
+        rating,
+        date_read: date, // Ensure date format is correct
+        review,
+        note,
+        book_cover: cover,
+        isbn,
+      },
+    ]);
 
-    res.json({ message: 'Book added successfully' });
+    if (error) {
+      throw error; // Forward the error to the catch block
+    }
+
+    res.json({ message: 'Book added successfully', data });
   } catch (error) {
     console.error('Error adding book to database:', error.message);
 
-    // Send error response to client
     res.status(500).json({
-      message: 'Error adding book to database: duplicate key value violates unique constraint "note_title_key"',
+      message: 'Error adding book to database',
       error: error.message,
     });
   }
@@ -98,27 +111,31 @@ app.get('/api/book', async (req, res) => {
   }
 
   try {
-    const response = await db.query('SELECT * FROM note WHERE title = $1', [bookId]);
+    const { data, error } = await supabase.from('note').select('*').eq('title', bookId);
 
-    if (response.rows.length === 0) {
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    if (!data || data.length === 0) {
       return res.status(404).json({
         message: 'Book not found.',
       });
     }
 
-    res.json(response.rows);
+    res.json(data);
   } catch (error) {
     console.error('Error fetching book details:', error.message);
 
     res.status(500).json({
-      message: 'An error occurred while fetching the book details. ',
+      message: 'An error occurred while fetching the book details.',
       error: error.message,
     });
   }
 });
 
 app.post('/api/edit-book', async (req, res) => {
-  const { title, author, rating, date, review, cover } = req.body;
+  const { id, title, author, rating, date, review, cover } = req.body;
 
   if (!title || !author || !rating || !date || !review || !cover) {
     return res.status(400).json({
@@ -126,22 +143,25 @@ app.post('/api/edit-book', async (req, res) => {
     });
   }
 
-  const editBookDetails = `
-    UPDATE note
-    SET title = $1, author = $2, rating = $3, date_read = $4, review = $5, book_cover = $6
-    WHERE title = $7;
-  `;
-
   try {
-    const result = await db.query(editBookDetails, [title, author, rating, date, review, cover, title]);
+    // Update the book details in the 'note' table
+    const { data, error } = await supabase
+      .from('note')
+      .update({
+        title,
+        author,
+        rating,
+        date_read: date,
+        review,
+        book_cover: cover,
+      })
+      .eq('id', id);
 
-    if (result.rowCount === 0) {
-      return res.status(404).json({
-        message: 'Book not found. Please provide a valid title.',
-      });
+    if (error) {
+      throw new Error(error.message);
     }
 
-    res.json({ message: 'Book details edited successfully' });
+    return res.status(200).json({ message: 'Book Updated successfully' });
   } catch (error) {
     console.error('Error editing book details:', error.message);
 
@@ -161,22 +181,24 @@ app.get('/api/delete-book', async (req, res) => {
     });
   }
 
-  const deleteQuery = `DELETE FROM note WHERE title = $1 RETURNING *`;
-
   try {
-    const result = await db.query(deleteQuery, [bookId]);
+    // Attempt to delete the book based on the bookId
+    const { data, error } = await supabase.from('note').delete().eq('title', bookId);
 
-    if (result.rowCount === 0) {
-      return res.status(404).json({
-        message: 'Book not found. No records were deleted.',
-      });
+    if (error) {
+      throw new Error(error.message);
     }
 
-    res.json({ message: 'Book deleted successfully', deletedBook: result.rows[0] });
+    // If deletion is successful, respond with success message
+    return res.status(200).json({
+      message: 'Book deleted successfully',
+      deletedBookId: bookId, // Use bookId for clarity
+    });
   } catch (error) {
     console.error('Error deleting book:', error.message);
 
-    res.status(500).json({
+    // Send 500 status with the error message
+    return res.status(500).json({
       message: 'An error occurred while trying to delete the book.',
       error: error.message,
     });
@@ -186,33 +208,58 @@ app.get('/api/delete-book', async (req, res) => {
 app.post('/api/add-note', async (req, res) => {
   const { note, title } = req.body;
 
-  const addNote = `
-    UPDATE note
-    SET note = $1
-    WHERE title = $2;
-  `;
+  if (!note || !title) {
+    return res.status(400).json({
+      message: 'Both note and title are required to add a note.',
+    });
+  }
 
   try {
-    await db.query(addNote, [note, title]);
+    // Update the note for the specified title in the 'note' table
+    const { data, error } = await supabase.from('note').update({ note }).eq('title', title).select();
 
-    res.json('Note added successfully');
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    if (data.length === 0) {
+      return res.status(404).json({
+        message: 'Book with the provided title not found.',
+      });
+    }
+
+    res.json({ message: 'Note added successfully', updatedNote: data[0] });
   } catch (error) {
-    console.error('Database Error:', error.message);
-    res.status(500).json({ error: 'Failed to update the note' });
+    console.error('Error updating note:', error.message);
+
+    res.status(500).json({
+      message: 'An error occurred while updating the note.',
+      error: error.message,
+    });
   }
 });
 
 app.post('/api/add-new-note', async (req, res) => {
   const { note, title } = req.body;
 
-  const addNote = `
-    UPDATE note
-    SET note = note || $1
-    WHERE title = $2;
-  `;
-
   try {
-    await db.query(addNote, [`\n\n${note}`, title]);
+    const { data: currentNoteData, error: fetchError } = await supabase.from('note').select('note').eq('title', title).single();
+
+    if (fetchError) {
+      throw new Error('Failed to fetch the current note.');
+    }
+
+    const currentNote = currentNoteData?.note || '';
+
+    const { error: updateError } = await supabase
+      .from('note')
+      .update({ note: `${currentNote}\n\n${note}` })
+      .eq('title', title);
+
+    if (updateError) {
+      throw new Error('Failed to update the note.');
+    }
+
     res.json('Note added successfully');
   } catch (error) {
     console.error('Database Error:', error.message);
@@ -225,16 +272,26 @@ app.listen(port, () => {
 });
 
 async function fetchBook(sortField = 'rating') {
-  let query = `SELECT * FROM note ORDER BY title ASC, date_read DESC, rating DESC`;
+  // Define the base query
+  let query = supabase.from('note').select('*');
 
+  // Add logic for dynamic sorting based on `sortField`
   if (sortField === 'title') {
-    query = `SELECT * FROM note ORDER BY title ASC, date_read DESC, rating DESC`;
+    query = query.order('title', { ascending: true }).order('date_read', { ascending: false }).order('rating', { ascending: false });
   } else if (sortField === 'rating') {
-    query = `SELECT * FROM note ORDER BY rating DESC, title ASC, date_read DESC`;
+    query = query.order('rating', { ascending: false }).order('title', { ascending: true }).order('date_read', { ascending: false });
   } else if (sortField === 'date_read') {
-    query = `SELECT * FROM note ORDER BY date_read DESC, title ASC, rating DESC`;
+    query = query.order('date_read', { ascending: false }).order('title', { ascending: true }).order('rating', { ascending: false });
   }
 
-  const result = await db.query(query);
-  return result.rows;
+  // Execute the query
+  const { data, error } = await query;
+
+  // Handle errors
+  if (error) {
+    console.error('Error fetching books:', error.message);
+    throw new Error('Unable to fetch books');
+  }
+
+  return data;
 }
