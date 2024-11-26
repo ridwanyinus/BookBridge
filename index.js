@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ['http://localhost:4000', 'https://bookbridge-9res.onrender.com'],
+    origin: ['http://localhost:4000'],
   }),
 );
 
