@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> 📚 Book Bridge is a simple application for storing and managing book notes using Supabase (backed by PostgreSQL) and Express.js, with EJS templating and Tailwind CSS for styling.
+📚 **Book Bridge** is a simple application for storing and managing book notes, inspired by [Derek Sivers](https://sive.rs/book) and his book notes. It uses Supabase (backed by PostgreSQL) and Express.js, with EJS templating and Tailwind CSS for styling.
 
 ### 🏠 [Homepage](https://bookbridge-pg0u.onrender.com/)
 
@@ -28,8 +28,8 @@ npm run test
 
 👤 **Ridwan Yunus**
 
-* Website: https://ridwanyinus.is-a.dev
-* Github: [@ridwanyinus](https://github.com/ridwanyinus)
+- Website: https://ridwanyinus.is-a.dev
+- Github: [@ridwanyinus](https://github.com/ridwanyinus)
 
 ## Show your support
 
