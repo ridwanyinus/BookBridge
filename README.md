@@ -2,7 +2,6 @@
 
 ![image](https://github.com/user-attachments/assets/adf5a649-60cb-4135-9f8d-04aee21b3874)
 
-
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
