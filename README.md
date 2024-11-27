@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to book-bridge 👋</h1>
 
-![bookbridge](https://github.com/user-attachments/assets/651c93d7-87f8-4192-9e1a-81fe8454b5b8)
+![image](https://github.com/user-attachments/assets/adf5a649-60cb-4135-9f8d-04aee21b3874)
 
 
 <p>
