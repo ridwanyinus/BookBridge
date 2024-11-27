@@ -10,15 +10,14 @@
     <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
     <title>Book Bridge</title>
   </head>
-  <body class="max-w-[52em] bg-slate-950 min-h-screen">
-    <a href="https://ridwanyinus.is-a.dev/" class="valkyrie mb-8 mt-2 text-cyan-500 no-underline text-6xl capitalize block leading-[1em] hover:border-b w-fit border-cyan-500 underline-offset-1" title="Ridwan Yunus"
-      >Ridwan Yunus</a
-    >
+  <body class="max-w-[48em] bg-slate-950 min-h-screen">
+    <a href="https://ridwanyinus.is-a.dev/" class="valkyrie mb-8 mt-2 text-cyan-500 text-6xl capitalize block w-fit visited:text-visited hover:underline" title="Ridwan Yunus">Ridwan Yunus</a>
     <h2 class="heading-2 text-start text-5xl text-cyan-500 mb-8 valkyrie no-underline">Books I’ve read</h2>
     <p class="text-xl *:text-xl">
-      Tiny summary but <span class="font-semibold">detailed notes for each</span>. Use the ISBN number to find it from your local library or anywhere else.
-      <span class="font-semibold">This page will constantly update as I read more</span>, so bookmark it if you want to check back in a few months.
+      Concise summaries with <span class="font-semibold">detailed notes for each</span>. Use the ISBN to locate them at your local library or other sources.
+      <span class="font-semibold">This page will be regularly updated as I read more</span>—bookmark it to check back in a few months for new additions!
     </p>
+
     <p class="*:text-xl text-xl mt-6">
       Sorted with <span class="font-semibold">my top recommendations up top</span>. Sort by <a href="/?sort=title" class="text-orange">title</a>, <a href="/?sort=date" class="text-orange">newest</a>,
       or <a href="/?sort=rating" class="text-orange">best</a>.
@@ -32,18 +31,18 @@
         <section class="mb-12">
           <figure class="float-left mr-8">
             <a href="/book/<%= book[i].title %>">
-              <img src="<%=book[i].book_cover %>" alt="<%= book[i].title %>" class="w-[135px] h-[187px]" />
+              <img src="<%=book[i].book_cover %>" alt="<%= book[i].title %>" title="<%= book[i].title %>" class="w-[135px] h-[187px]" />
             </a>
           </figure>
 
           <h3 id="title" class="text-3xl mb-4 underline text-cyan-600 valkyrie">
-            <a href="/book/<%= book[i].title %>" id="author" class="text-cyan-600 valkyrie"><%= book[i].title %> - by <%= book[i].author %></a>
+            <a href="/book/<%= book[i].title %>" id="author" class="text-cyan-600 valkyrie visited:text-visited"><%= book[i].title %> - by <%= book[i].author %></a>
           </h3>
           <p class="text-base valkyrie text-slate-500 *:text-slate-500 my-6">Date read: <%= book[i].date_read %>. How strongly I recommend it: <strong><%= book[i].rating %></strong>/10</p>
           <p class="text-xl notes"><%= book[i].review %></p>
           <p class="text-xl mt-6">
-            <a href="/book/<%= book[i].title %>" class="text-orange *:text-orange hover:underline"><strong>Read my notes</strong></a
-            >, or go to the <a href="https://openlibrary.org/isbn/<%= book[i].isbn %>" class="text-orange hover:underline">Open library page</a> for details and reviews.
+            <a href="/book/<%= book[i].title %>" class="text-orange *:text-orange *:visited:text-visited_orange hover:underline"> <strong>Read my notes</strong> </a>, or go to the
+            <a href="https://openlibrary.org/isbn/<%= book[i].isbn %>" class="text-orange visited:text-visited_orange hover:underline"> Open library page </a> for details and reviews.
           </p>
         </section>
       </div>

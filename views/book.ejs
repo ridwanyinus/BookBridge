@@ -10,12 +10,17 @@
     <link rel="stylesheet" href="../styles/output.css" />
     <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
   </head>
-  <body class="max-w-[47em] py-2 bg-slate-950">
-    <a href="/" class="valkyrie mb-8 mt-2 text-cyan-500 no-underline text-6xl capitalize block leading-[1em] hover:underline" title="Ridwan Yunus">Ridwan Yunus</a>
+  <body class="max-w-[52em] py-2 bg-slate-950">
+    <a
+      href="https://ridwanyinus.is-a.dev/"
+      class="valkyrie mb-8 mt-2 text-cyan-500 no-underline text-6xl capitalize block leading-[1em] hover:underline visited:text-visited w-fit"
+      title="Ridwan Yunus"
+      >Ridwan Yunus</a
+    >
 
     <div class="flex space-x-6">
       <a href="https://openlibrary.org/isbn/<%= book[0].isbn %>" class="min-w-[135px] h-[187px]">
-        <img src="<%=book[0].book_cover %>" alt="<%= book[0].title %>" class="object-cover w-full h-full" />
+        <img src="<%=book[0].book_cover %>" alt="<%= book[0].title %>" class="object-cover w-full h-full" title="<%= book[0].title %>" />
       </a>
 
       <div class="flex flex-col space-y-2 w-fit">
@@ -26,11 +31,12 @@
       </div>
     </div>
     <p class="text-base *:text-xl mt-2 valkyrie">
-      (See <strong><a href="/" class="text-orange hover:underline">my list of books</a></strong
+      (See <strong><a href="/" class="text-orange hover:underline visited:text-visited_orange">my list of books</a></strong
       >, for more.)
     </p>
     <p class="text-xl *:text-xl my-6">
-      Go to the <strong><a href="https://openlibrary.org/isbn/<%= book[0].isbn %>" class="text-orange hover:underline">Open library page</a></strong> for details and reviews.
+      Go to the <strong><a href="https://openlibrary.org/isbn/<%= book[0].isbn %>" class="text-orange hover:underline visited:text-visited_orange">Open library page</a></strong> for details and
+      reviews.
     </p>
 
     <div>
