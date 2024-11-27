@@ -3,12 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Book Bridge: A simple application for storing and managing book notes using Supabase, PostgreSQL, and Express.js. Enhanced with EJS templating and Tailwind CSS for a seamless experience." />
     <link rel="stylesheet" href="../styles/output.css" />
     <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
-    <title>Book Notes</title>
+    <title>Book Bridge</title>
   </head>
   <body class="max-w-[52em] bg-slate-950 min-h-screen">
-    <a href="/" class="valkyrie mb-8 mt-2 text-cyan-500 no-underline text-6xl capitalize block leading-[1em] hover:border-b w-fit border-cyan-500 underline-offset-1" title="Ridwan Yunus"
+    <a href="https://ridwanyinus.is-a.dev/" class="valkyrie mb-8 mt-2 text-cyan-500 no-underline text-6xl capitalize block leading-[1em] hover:border-b w-fit border-cyan-500 underline-offset-1" title="Ridwan Yunus"
       >Ridwan Yunus</a
     >
     <h2 class="heading-2 text-start text-5xl text-cyan-500 mb-8 valkyrie no-underline">Books I’ve read</h2>
@@ -40,7 +43,7 @@
           <p class="text-xl notes"><%= book[i].review %></p>
           <p class="text-xl mt-6">
             <a href="/book/<%= book[i].title %>" class="text-orange *:text-orange hover:underline"><strong>Read my notes</strong></a
-            >, or go to the <a href="/" class="text-orange hover:underline">Open library page</a> for details and reviews.
+            >, or go to the <a href="https://openlibrary.org/isbn/<%= book[i].isbn %>" class="text-orange hover:underline">Open library page</a> for details and reviews.
           </p>
         </section>
       </div>

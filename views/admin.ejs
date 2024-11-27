@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/output.css" />
-    <title>Admin</title>
+    <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
+
+    <title>Book Bridge - Admin</title>
   </head>
   <body class="min-h-svh bg-[url('../images/bg.jpg')] bg-cover w-full flex flex-col items-center max-w-[55em]">
     <header class="*:text-xl text-xl flex valkyrie">
@@ -32,7 +34,7 @@
             <p class="text-xl notes"><%= book[i].review %></p>
             <p class="text-xl mt-6">
               <a href="/" class="text-orange *:text-orange hover:underline"><strong>Read my notes</strong></a
-              >, or go to the <a href="/" class="text-orange hover:underline">Open library page</a> for details and reviews.
+              >, or go to the <a href="https://openlibrary.org/isbn/<%= book[i].isbn %>" class="text-orange hover:underline">Open library page</a> for details and reviews.
             </p>
           </div>
           <div class="flex flex-col gap-2">

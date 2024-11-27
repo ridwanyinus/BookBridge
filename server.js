@@ -185,20 +185,16 @@ app.post('/delete/:id', async (req, res) => {
   const bookId = req.params.id;
 
   try {
-    // Sending the bookId to the delete API endpoint
     const result = await axios.get(`${API_URL}/api/delete-book`, {
-      params: { bookId }, // Pass the bookId as a query parameter
+      params: { bookId },
     });
 
-    res.redirect('/admin'); // Redirect to the admin page
+    res.redirect('/admin');
   } catch (error) {
-    // Log the full error to help with debugging
     console.error('Error deleting the book:', error);
 
-    // Extracting the error message from the response, if available
     const errorMessage = error.response?.data?.message || 'Failed to delete the book. Please try again later.';
 
-    // Send the 500 error status with the message
     res.status(500).send({
       message: 'An error occurred while deleting the book.',
       error: errorMessage,
@@ -312,13 +308,12 @@ app.post('/api/add-book', async (req, res) => {
   }
 
   try {
-    // Insert data into Supabase
     const { data, error } = await supabase.from('note').insert([
       {
         title,
         author,
         rating,
-        date_read: date, // Ensure date format is correct
+        date_read: date,
         review,
         note,
         book_cover: cover,
@@ -327,7 +322,7 @@ app.post('/api/add-book', async (req, res) => {
     ]);
 
     if (error) {
-      throw error; // Forward the error to the catch block
+      throw error;
     }
 
     res.json({ message: 'Book added successfully', data });
@@ -384,7 +379,6 @@ app.post('/api/edit-book', async (req, res) => {
   }
 
   try {
-    // Update the book details in the 'note' table
     const { data, error } = await supabase
       .from('note')
       .update({
@@ -422,22 +416,19 @@ app.get('/api/delete-book', async (req, res) => {
   }
 
   try {
-    // Attempt to delete the book based on the bookId
     const { data, error } = await supabase.from('note').delete().eq('title', bookId);
 
     if (error) {
       throw new Error(error.message);
     }
 
-    // If deletion is successful, respond with success message
     return res.status(200).json({
       message: 'Book deleted successfully',
-      deletedBookId: bookId, // Use bookId for clarity
+      deletedBookId: bookId,
     });
   } catch (error) {
     console.error('Error deleting book:', error.message);
 
-    // Send 500 status with the error message
     return res.status(500).json({
       message: 'An error occurred while trying to delete the book.',
       error: error.message,
@@ -455,7 +446,6 @@ app.post('/api/add-note', async (req, res) => {
   }
 
   try {
-    // Update the note for the specified title in the 'note' table
     const { data, error } = await supabase.from('note').update({ note }).eq('title', title).select();
 
     if (error) {
@@ -508,22 +498,18 @@ app.post('/api/add-new-note', async (req, res) => {
 });
 
 async function fetchBook(sortField = 'rating') {
-  // Define the base query
   let query = supabase.from('note').select('*');
 
-  // Add logic for dynamic sorting based on `sortField`
   if (sortField === 'title') {
-    query = query.order('title', { ascending: true }).order('date_read', { ascending: false }).order('rating', { ascending: false });
+    query = query.order('title', { ascending: true });
   } else if (sortField === 'rating') {
-    query = query.order('rating', { ascending: false }).order('title', { ascending: true }).order('date_read', { ascending: false });
-  } else if (sortField === 'date_read') {
-    query = query.order('date_read', { ascending: false }).order('title', { ascending: true }).order('rating', { ascending: false });
+    query = query.order('rating', { ascending: false });
+  } else if (sortField === 'date') {
+    query = query.order('date_read', { ascending: false });
   }
 
-  // Execute the query
   const { data, error } = await query;
 
-  // Handle errors
   if (error) {
     console.error('Error fetching books:', error.message);
     throw new Error('Unable to fetch books');

@@ -9,7 +9,7 @@
   "keywords": [],
   "type": "module",
   "license": "ISC",
-  "description": "",
+  "description": "📚 Book Bridge is a simple application for storing and managing book notes using Supabase (backed by PostgreSQL) and Express.js, with EJS templating and Tailwind CSS for styling.",
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
     "axios": "^1.7.7",
