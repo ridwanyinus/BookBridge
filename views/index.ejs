@@ -19,7 +19,7 @@
     </p>
 
     <p class="*:text-xl text-xl mt-6">
-      Sorted with <span class="font-semibold">my top recommendations up top</span>. Sort by <a href="/?sort=title" class="text-orange">title</a>, <a href="/?sort=date" class="text-orange">newest</a>,
+      Sorted with <span class="font-semibold">my top recommendations up top</span>. Sort by <a href="/?sort=title" class="text-orange">title</a>, <a href="/?sort=date" class="text-orange">latest</a>,
       or <a href="/?sort=rating" class="text-orange">best</a>.
     </p>
     <div class="bg-slate-50 opacity-50 w-full h-[1px] my-7 mb-10"></div>
@@ -38,7 +38,7 @@
           <h3 id="title" class="text-3xl mb-4 underline text-cyan-600 valkyrie">
             <a href="/book/<%= book[i].title %>" id="author" class="text-cyan-600 valkyrie visited:text-visited"><%= book[i].title %> - by <%= book[i].author %></a>
           </h3>
-          <p class="text-base valkyrie text-slate-500 *:text-slate-500 my-6">Date read: <%= book[i].date_read %>. How strongly I recommend it: <strong><%= book[i].rating %></strong>/10</p>
+          <p class="text-base valkyrie text-slate-500 *:text-slate-500 my-6">Date read: <%= book[i].date_read %>. My level of recommendation for it: <strong><%= book[i].rating %></strong>/10</p>
           <p class="text-xl notes"><%= book[i].review %></p>
           <p class="text-xl mt-6">
             <a href="/book/<%= book[i].title %>" class="text-orange *:text-orange *:visited:text-visited_orange hover:underline"> <strong>Read my notes</strong> </a>, or go to the
