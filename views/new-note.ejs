@@ -13,7 +13,7 @@
       <label for="book-note" class="mt-4">New Note:</label>
 
       <form action="/add-new-note" method="post" class="flex flex-col gap-y-4">
-        <textarea id="book-note" name="note" rows="12" cols="50" class="text-black p-0" required></textarea>
+        <textarea id="book-note" name="note" rows="12" class="text-black p-0 min-w-[19rem]" required></textarea>
         <button type="submit" class="bg-green-800 p-2 rounded-sm w-fit mx-auto">Submit</button>
         <input type="text" value="<%= book[0].title %>" hidden name="title" />
       </form>

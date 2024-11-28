@@ -6,7 +6,7 @@ export default {
       colors: {
         primary: '#c0c0c0',
         orange: '#ff8c00',
-        visited: 'rgb(203, 172, 249)',
+        visited: 'rgb(14, 116, 144)',
         visited_orange: '#cc6e00',
       },
     },

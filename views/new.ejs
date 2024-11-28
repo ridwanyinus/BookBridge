@@ -7,51 +7,51 @@
     <link rel="stylesheet" href="../styles/output.css" />
     <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
   </head>
-  <body class="min-h-svh bg-[url('../images/bg.jpg')] bg-cover w-full flex flex-col items-center max-w-[40em]">
+  <body class="min-h-svh bg-[url('../images/bg.jpg')] bg-cover w-full flex flex-col items-center max-w-[40em] py-5">
     <div class="flex gap-x-4 items-center">
       <p class="text-4xl underline valkyrie pt-2 pb-4">Add New Book</p>
       <a href="/admin" class="valkyrie hover:underline">Admin</a>
     </div>
 
     <form action="/add-book" method="post">
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center mt-4">
         <label for="book-title">Title:</label>
-        <input type="text" id="book-title" name="title" value="<%= book.title %>" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-title" name="title" value="<%= book.title %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-author" class="mt-4">Author:</label>
-        <input type="text" id="book-author" name="author" value="<%= book.author_name %>" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-author" name="author" value="<%= book.author_name %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-rating" class="mt-4">Rating:</label>
-        <input type="text" id="book-rating" name="rating" value="0" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-rating" name="rating" value="0" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-date_read" class="mt-4">Date Read:</label>
-        <input type="text" id="book-date_read" name="date" value="In Progress" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-date_read" name="date" value="In Progress" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-review" class="mt-4">Review:</label>
-        <textarea id="book-review" name="review" rows="2" cols="50" class="text-black p-0">Review after reading.</textarea>
+        <textarea id="book-review" name="review" rows="3" class="text-black p-0 min-w-[19rem] md:min-w-[60ch]">Review after reading.</textarea>
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-note" class="mt-4">Note:</label>
-        <textarea id="book-note" name="note" rows="2" cols="50" class="text-black p-0">Note While reading.</textarea>
+        <textarea id="book-note" name="note" rows="3" class="text-black p-0 min-w-[19rem] md:min-w-[60ch]">Note While reading.</textarea>
       </div>
 
       <div class="flex flex-col items-center mb-3">
         <label for="book-cover_id" class="mt-4">Book Cover Id:</label>
-        <input type="text" id="book-cover_id" name="cover" value="<%= book.cover_i %>" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-cover_id" name="cover" value="<%= book.cover_i %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <div class="flex flex-col items-center mb-3">
         <label for="book-isbn" class="mt-4">Book ISBN:</label>
-        <input type="text" id="book-isbn" name="isbn" value="<%= book.isbn[0] %>" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-isbn" name="isbn" value="<%= book.isbn[0] %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <button type="submit" class="text-center bg-slate-700 hover:bg-slate-600 rounded-sm p-2 text-primary mx-auto block">Submit New Book</button>

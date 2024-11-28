@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../styles/output.css" />
     <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
   </head>
-  <body class="min-h-svh bg-slate-950 bg-cover w-full flex flex-col items-center max-w-[40em]">
+  <body class="min-h-svh bg-slate-950 flex flex-col items-center max-w-[40em] pt-5 px-5 sm:px-8 md:px-10 mx-auto sm:pt-5 lg:pt-0">
     <form action="/search-book" method="post">
       <label for="search" class="text-xl pt-4">Search For New Book</label>
       <div class="flex items-center">
@@ -17,11 +17,11 @@
     </form>
 
     <div class="mt-16">
-      <h2 class="text-4xl underline valkyrie">All Result</h2>
+      <h2 class="text-4xl underline valkyrie mb-6 md:mb-3">All Result</h2>
 
       <div>
         <% if(locals.data){%> <% for (let i = 0; i < data.length; i++) { %>
-        <a href="/admin/<%= i%>" class="border border-slate-500">
+        <a href="/admin/<%= i%>" class="flex flex-col items-center mb-5 py-2 border">
           <p><strong>Title:</strong> <%= data[i].title %></p>
           <p><strong>Author:</strong> <%= data[i].author_name ? data[i].author_name[0] : 'Unknown' %></p>
 

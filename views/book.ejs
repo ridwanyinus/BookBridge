@@ -10,42 +10,42 @@
     <link rel="stylesheet" href="../styles/output.css" />
     <link rel="shortcut icon" href="../images/book_generated.jpg" type="image/x-icon" />
   </head>
-  <body class="max-w-[52em] py-2 bg-slate-950">
+  <body class="max-w-[52em] px-5 py-2 sm:px-8 md:px-10 mx-auto sm:pt-5 lg:pt-0 bg-slate-950">
     <a
       href="https://ridwanyinus.is-a.dev/"
-      class="valkyrie mb-8 mt-2 text-cyan-500 no-underline text-6xl capitalize block leading-[1em] hover:underline visited:text-visited w-fit"
+      class="valkyrie mb-8 mt-2 text-cyan-500 text-5xl lg:text-6xl no-underline capitalize block leading-[1em] hover:underline visited:text-visited w-fit"
       title="Ridwan Yunus"
       >Ridwan Yunus</a
     >
 
-    <div class="flex space-x-6">
-      <a href="https://openlibrary.org/isbn/<%= book[0].isbn %>" class="min-w-[135px] h-[187px]">
-        <img src="<%=book[0].book_cover %>" alt="<%= book[0].title %>" class="object-cover w-full h-full" title="<%= book[0].title %>" />
+    <div class="flex space-x-3 md:space-x-4 sm:space-x-6">
+      <a href="https://openlibrary.org/isbn/<%= book[0].isbn %>">
+        <img src="<%=book[0].book_cover %>" alt="<%= book[0].title %>" class="w-28 h-32 sm:w-[135px] sm:h-[187px]" title="<%= book[0].title %>" />
       </a>
 
       <div class="flex flex-col space-y-2 w-fit">
-        <h3 class="text-4xl mb-4 text-cyan-600 valkyrie"><%= book[0].title %> - by <%= book[0].author%></h3>
-        <p class="text-lg valkyrie text-slate-500">ISBN: <%= book[0].isbn %></p>
-        <p class="text-lg valkyrie text-slate-500">Date read: <%= book[0].date_read %></p>
-        <p class="text-lg valkyrie text-slate-500 *:text-slate-500">My level of recommendation for it: <strong>10</strong>/10</p>
+        <h3 class="text-xl sm:text-2xl md:text-3xl md:mb-4 text-cyan-600 valkyrie"><%= book[0].title %> - by <%= book[0].author%></h3>
+        <p class="text-sm sm:text-base md:text-lg valkyrie text-slate-500">ISBN: <%= book[0].isbn %></p>
+        <p class="text-sm sm:text-base md:text-lg valkyrie text-slate-500">Date read: <%= book[0].date_read %></p>
+        <p class="text-sm sm:text-base md:text-lg valkyrie text-slate-500 *:text-slate-500">My level of recommendation for it: <strong>10</strong>/10</p>
       </div>
     </div>
-    <p class="text-base *:text-xl mt-2 valkyrie">
+    <p class="text-base lg:*:text-xl mt-2 valkyrie">
       (See <strong><a href="/" class="text-orange hover:underline visited:text-visited_orange">my list of books</a></strong
       >, for more.)
     </p>
-    <p class="text-xl *:text-xl my-6">
+    <p class="text-base lg:text-xl lg:*:text-xl my-6">
       Go to the <strong><a href="https://openlibrary.org/isbn/<%= book[0].isbn %>" class="text-orange hover:underline visited:text-visited_orange">Open library page</a></strong> for details and
       reviews.
     </p>
 
     <div>
       <!-- reviews -->
-      <p class="text-xl mb-12 notes"><%= book[0].review %></p>
+      <p class="text-lg md:text-xl mb-12 notes"><%= book[0].review %></p>
 
       <!-- my notes -->
       <h4 class="valkyrie text-3xl my-6 text-cyan-600">My notes</h4>
-      <p class="text-xl notes"><%- book[0].note %></p>
+      <p class="text-lg notes md:text-xl w-full"><%- book[0].note %></p>
     </div>
   </body>
 </html>

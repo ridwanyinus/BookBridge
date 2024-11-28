@@ -14,32 +14,32 @@
       <input type="text" name="id" value="<%= book[0].id %>" hidden />
       <div class="flex flex-col items-center">
         <label for="book-title">Title:</label>
-        <input type="text" id="book-title" name="title" value="<%= book[0].title %>" class="min-w-[50ch] w-16 px-2 text-black" required />
+        <input type="text" id="book-title" name="title" value="<%= book[0].title %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" required />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-author" class="mt-4">Author:</label>
-        <input type="text" id="book-author" name="author" value="<%= book[0].author %>" class="min-w-[50ch] w-16 px-2 text-black" required />
+        <input type="text" id="book-author" name="author" value="<%= book[0].author %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" required />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-rating" class="mt-4">Rating:</label>
-        <input type="text" id="book-rating" name="rating" value="<%= book[0].rating %>" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-rating" name="rating" value="<%= book[0].rating %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-date_read" class="mt-4">Date Read:</label>
-        <input type="text" id="book-date_read" name="date" value="<%= book[0].date_read %>" class="min-w-[50ch] w-16 px-2 text-black" />
+        <input type="text" id="book-date_read" name="date" value="<%= book[0].date_read %>" class="min-w-[15rem] md:min-w-[50ch] w-16 px-2 text-black" />
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-review" class="mt-4">Review:</label>
-        <textarea id="book-review" name="review" rows="2" cols="50" class="text-black p-0"><%= book[0].review %></textarea>
+        <textarea id="book-review" name="review" rows="3" class="text-black p-0 min-w-[19rem] md:min-w-[60ch]"><%= book[0].review %></textarea>
       </div>
 
       <div class="flex flex-col items-center">
         <label for="book-review" class="mt-4">Cover Image Link:</label>
-        <input type="text" id="book-cover" name="cover" value="<%= book[0].book_cover %>" class="min-w-[70ch] w-16 px-2 text-black" required />
+        <input type="text" id="book-cover" name="cover" value="<%= book[0].book_cover %>" class="min-w-[19rem] md:min-w-[60ch] px-2 text-black" required />
       </div>
 
       <button type="submit" class="mt-6 text-center bg-green-700 hover:bg-green-600 rounded-sm p-2 text-primary mx-auto block">Submit</button>
