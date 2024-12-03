@@ -12,7 +12,7 @@
       <label for="book-note" class="mt-4">Note:</label>
 
       <form action="/add-note" method="post" class="flex flex-col gap-y-4">
-        <textarea id="book-note" name="note" rows="22" class="text-black p-0 sm:min-w-[60ch] lg:min-w-[80vw] min-w-[19rem] text-center py-4" required><%= book[0].note %></textarea>
+        <textarea id="book-note" name="note" rows="22" class="text-black p-0 sm:min-w-[60ch] lg:min-w-[80vw] min-w-[19rem] py-4" required><%= book[0].note %></textarea>
         <button type="submit" class="bg-green-800 p-2 rounded-sm w-fit mx-auto">Submit</button>
         <input type="text" value="<%= book[0].title %>" hidden name="title" />
       </form>
