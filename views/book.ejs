@@ -27,7 +27,7 @@
         <h3 class="text-xl sm:text-2xl md:text-3xl md:mb-4 text-cyan-600 valkyrie"><%= book[0].title %> - by <%= book[0].author%></h3>
         <p class="text-sm sm:text-base md:text-lg valkyrie text-slate-500">ISBN: <%= book[0].isbn %></p>
         <p class="text-sm sm:text-base md:text-lg valkyrie text-slate-500">Date read: <%= book[0].date_read %></p>
-        <p class="text-sm sm:text-base md:text-lg valkyrie text-slate-500 *:text-slate-500">My level of recommendation for it: <strong>10</strong>/10</p>
+        <p class="text-sm sm:text-base md:text-lg valkyrie text-slate-500 *:text-slate-500">My level of recommendation for it: <strong><%= book[0].rating %></strong>/10</p>
       </div>
     </div>
     <p class="text-base lg:*:text-xl mt-2 valkyrie">
